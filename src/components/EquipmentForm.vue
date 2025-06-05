@@ -226,7 +226,6 @@ export default {
         if (!response.ok)
           throw new Error(`HTTP error! Status: ${response.status}`);
         const savedEquipment = await response.json();
-        // Use replace instead of push to avoid adding to history
         this.$router.replace(`/equipment/${savedEquipment._id}`);
       } catch (err) {
         this.error = `Помилка збереження: ${err.message}`;
@@ -235,7 +234,6 @@ export default {
       }
     },
     cancelEdit() {
-      // Navigate to the previous route or fallback to home
       if (this.previousRoute && this.previousRoute.name !== "EditEquipment") {
         this.$router.push(this.previousRoute);
       } else {
@@ -245,7 +243,6 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     next((vm) => {
-      // Store the previous route before entering the edit page
       vm.previousRoute = from;
     });
   },
