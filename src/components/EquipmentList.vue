@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import { API_BASE_URL } from "../config";
+
 export default {
   props: {
     category: String,
@@ -68,10 +70,8 @@ export default {
   methods: {
     async fetchEquipment() {
       try {
-        console.log(
-          "Fetching equipment from http://localhost:3000/api/equipment"
-        );
-        const response = await fetch("http://localhost:3000/api/equipment");
+        console.log(`Fetching equipment from ${API_BASE_URL}/api/equipment`);
+        const response = await fetch(`${API_BASE_URL}/api/equipment`);
         if (!response.ok)
           throw new Error(`HTTP error! Status: ${response.status}`);
         this.equipment = await response.json();
@@ -81,7 +81,7 @@ export default {
     },
     async deleteEquipment(id) {
       try {
-        await fetch(`http://localhost:3000/api/equipment/${id}`, {
+        await fetch(`${API_BASE_URL}/api/equipment/${id}`, {
           method: "DELETE",
         });
         this.equipment = this.equipment.filter((item) => item._id !== id);

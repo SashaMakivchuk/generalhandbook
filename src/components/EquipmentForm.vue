@@ -170,6 +170,8 @@
 </template>
 
 <script>
+import { API_BASE_URL } from "../config";
+
 export default {
   data() {
     return {
@@ -197,7 +199,7 @@ export default {
       try {
         console.log(`Fetching equipment with ID: ${this.$route.params.id}`);
         const response = await fetch(
-          `http://localhost:3000/api/equipment/${this.$route.params.id}`
+          `${API_BASE_URL}/api/equipment/${this.$route.params.id}`
         );
         if (!response.ok)
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -214,8 +216,8 @@ export default {
       try {
         const method = this.isEdit ? "PUT" : "POST";
         const url = this.isEdit
-          ? `http://localhost:3000/api/equipment/${this.$route.params.id}`
-          : "http://localhost:3000/api/equipment";
+          ? `${API_BASE_URL}/api/equipment/${this.$route.params.id}`
+          : `${API_BASE_URL}/api/equipment`;
         const response = await fetch(url, {
           method,
           headers: { "Content-Type": "application/json" },

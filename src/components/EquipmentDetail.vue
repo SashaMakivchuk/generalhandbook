@@ -100,44 +100,60 @@
 </template>
 
 <script>
+import { API_BASE_URL } from "../config";
+
 export default {
   data() {
     return {
       equipment: null,
-      loading: true,
+      loading: false,
       error: null,
       previousRoute: null,
     };
   },
   methods: {
     async fetchEquipment() {
+      if (!this.$route || !this.$route.params || !this.$route.params.id) {
+        this.error = "Невалідний маршрут";
+        this.$router.replace("/");
+        return;
+      }
+      this.loading = true;
       try {
-        console.log(`Fetching equipment with ID: ${this.$route.params.id}`);
+        console.log("Fetching equipment with ID:", this.$route.params.id);
         const response = await fetch(
-          `http://localhost:3000/api/equipment/${this.$route.params.id}`
+          `${API_BASE_URL}/api/equipment/${this.$route.params.id}`
         );
+        console.log("Response status:", response.status);
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          if (response.status === 404) {
+            this.error = "Техніка не знайдена";
+            this.$router.replace("/");
+            return;
+          }
+          throw new Error(`HTTP error: ${response.status}`);
         }
-        this.equipment = await response.json();
+        const data = await response.json();
+        console.log("Fetched equipment:", data);
+        this.equipment = data;
       } catch (err) {
+        console.error("Fetch error:", err.message);
         this.error = `Помилка завантаження даних: ${err.message}`;
       } finally {
         this.loading = false;
       }
     },
     goBack() {
-      // Navigate to the previous route, skipping edit page
-      if (this.previousRoute && this.previousRoute.name !== "EditEquipment") {
-        this.$router.push(this.previousRoute);
+      const previousRoute = this.previousRoute || { path: "/" };
+      if (previousRoute.name !== "EditEquipment") {
+        this.$router.replace(previousRoute);
       } else {
-        this.$router.push("/");
+        this.$router.replace("/");
       }
     },
   },
   beforeRouteEnter(to, from, next) {
     next((vm) => {
-      // Store the previous route before entering the detail page
       vm.previousRoute = from;
     });
   },

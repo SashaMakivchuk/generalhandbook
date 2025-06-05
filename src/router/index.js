@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import CategoryView from "../views/CategoryView.vue";
-import AllEquipmentView from "../views/AllEquipmentView.vue";
 import EquipmentDetail from "../components/EquipmentDetail.vue";
 import EquipmentForm from "../components/EquipmentForm.vue";
 
@@ -15,11 +14,6 @@ const routes = [
     path: "/category/:category",
     name: "Category",
     component: CategoryView,
-  },
-  {
-    path: "/all",
-    name: "AllEquipment",
-    component: AllEquipmentView,
   },
   {
     path: "/equipment/:id",
