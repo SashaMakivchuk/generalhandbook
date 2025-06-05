@@ -1,0 +1,182 @@
+[
+  {
+    "category": "Танки",
+    "title": "Т-64БВ",
+    "how_much": 200,
+    "creation_year": 1985,
+    "price_usd": 2000000,
+    "period_of_operation": "1985-н.д.",
+    "origin": "СРСР/Україна",
+    "description": "Модернізований основний бойовий танк з динамічним захистом, активно використовується ЗСУ."
+  },
+  {
+    "category": "Танки",
+    "title": "Т-84 Оплот",
+    "how_much": 10,
+    "creation_year": 2009,
+    "price_usd": 4800000,
+    "period_of_operation": "2009-н.д.",
+    "origin": "Україна",
+    "description": "Сучасний український танк з покращеною бронею та системами управління вогнем."
+  },
+  {
+    "category": "Танки",
+    "title": "Leopard 2A6",
+    "how_much": 18,
+    "creation_year": 2003,
+    "price_usd": 6000000,
+    "period_of_operation": "2023-н.д.",
+    "origin": "Німеччина",
+    "description": "Поставлений Німеччиною основний бойовий танк з високою вогневою міццю."
+  },
+  {
+    "category": "Артилерія",
+    "title": "Богдана",
+    "how_much": 12,
+    "creation_year": 2018,
+    "price_usd": 3000000,
+    "period_of_operation": "2022-н.д.",
+    "origin": "Україна",
+    "description": "Українська самохідна гаубиця калібру 155 мм з високою точністю."
+  },
+  {
+    "category": "Артилерія",
+    "title": "M777",
+    "how_much": 50,
+    "creation_year": 2005,
+    "price_usd": 2700000,
+    "period_of_operation": "2022-н.д.",
+    "origin": "США",
+    "description": "Легка буксирувальна гаубиця, поставлена США для підтримки піхоти."
+  },
+  {
+    "category": "Артилерія",
+    "title": "2С19 Мста-С",
+    "how_much": 30,
+    "creation_year": 1989,
+    "price_usd": 2500000,
+    "period_of_operation": "1989-н.д.",
+    "origin": "СРСР/Україна",
+    "description": "Самохідна гаубиця калібру 152 мм, модернізована для ЗСУ."
+  },
+  {
+    "category": "Авіація",
+    "title": "Су-27",
+    "how_much": 20,
+    "creation_year": 1985,
+    "price_usd": 30000000,
+    "period_of_operation": "1985-н.д.",
+    "origin": "СРСР/Україна",
+    "description": "Багатоцільовий винищувач для забезпечення переваги в повітрі."
+  },
+  {
+    "category": "Авіація",
+    "title": "МіГ-29",
+    "how_much": 25,
+    "creation_year": 1983,
+    "price_usd": 25000000,
+    "period_of_operation": "1983-н.д.",
+    "origin": "СРСР/Україна",
+    "description": "Фронтовий винищувач, модернізований для сучасних бойових дій."
+  },
+  {
+    "category": "Авіація",
+    "title": "F-16",
+    "how_much": 10,
+    "creation_year": 1978,
+    "price_usd": 35000000,
+    "period_of_operation": "2024-н.д.",
+    "origin": "США/Нідерланди",
+    "description": "Поставлені Нідерландами винищувачі для посилення ППО України."
+  },
+  {
+    "category": "Бронетранспортери",
+    "title": "БТР-4 Буцефал",
+    "how_much": 40,
+    "creation_year": 2011,
+    "price_usd": 1500000,
+    "period_of_operation": "2011-н.д.",
+    "origin": "Україна",
+    "description": "Український колісний БТР з модульною бронею для перевезення піхоти."
+  },
+  {
+    "category": "Бронетранспортери",
+    "title": "M113",
+    "how_much": 100,
+    "creation_year": 1960,
+    "price_usd": 500000,
+    "period_of_operation": "2022-н.д.",
+    "origin": "США",
+    "description": "Гусеничний БТР, поставлений США для підтримки маневреності військ."
+  },
+  {
+    "category": "Бронетранспортери",
+    "title": "MRAP",
+    "how_much": 50,
+    "creation_year": 2007,
+    "price_usd": 1000000,
+    "period_of_operation": "2023-н.д.",
+    "origin": "Німеччина/США",
+    "description": "Броньовані машини, стійкі до мін, для захисту особового складу."
+  },
+  {
+    "category": "Протиповітряна оборона",
+    "title": "Patriot PAC-3",
+    "how_much": 3,
+    "creation_year": 2001,
+    "price_usd": 200000000,
+    "period_of_operation": "2023-н.д.",
+    "origin": "США",
+    "description": "ЗРК для перехоплення балістичних ракет і літаків."
+  },
+  {
+    "category": "Протиповітряна оборона",
+    "title": "NASAMS",
+    "how_much": 5,
+    "creation_year": 1994,
+    "price_usd": 50000000,
+    "period_of_operation": "2022-н.д.",
+    "origin": "США/Норвегія",
+    "description": "ЗРК середньої дальності для захисту від ракет і дронів."
+  },
+  {
+    "category": "Протиповітряна оборона",
+    "title": "С-300ПС",
+    "how_much": 10,
+    "creation_year": 1982,
+    "price_usd": 150000000,
+    "period_of_operation": "1982-н.д.",
+    "origin": "СРСР/Україна",
+    "description": "Зенітно-ракетний комплекс для захисту від авіації та ракет."
+  },
+  {
+    "category": "Безпілотники",
+    "title": "Bayraktar TB2",
+    "how_much": 30,
+    "creation_year": 2014,
+    "price_usd": 5000000,
+    "period_of_operation": "2022-н.д.",
+    "origin": "Туреччина",
+    "description": "Ударний БПЛА для розвідки та ураження цілей."
+  },
+  {
+    "category": "Безпілотники",
+    "title": "Пекло",
+    "how_much": 500,
+    "creation_year": 2024,
+    "price_usd": 10000,
+    "period_of_operation": "2024-н.д.",
+    "origin": "Україна",
+    "description": "Український ударний дрон для атак на короткі відстані."
+  },
+  {
+    "category": "Безпілотники",
+    "title": "Switchblade",
+    "how_much": 200,
+    "creation_year": 2011,
+    "price_usd": 60000,
+    "period_of_operation": "2022-н.д.",
+    "origin": "США",
+    "description": "Камікадзе-дрон для точкових ударів по ворожих позиціях."
+  }
+]
