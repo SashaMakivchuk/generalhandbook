@@ -120,11 +120,9 @@ export default {
       }
       this.loading = true;
       try {
-        console.log("Fetching equipment with ID:", this.$route.params.id);
         const response = await fetch(
           `${API_BASE_URL}/api/equipment/${this.$route.params.id}`
         );
-        console.log("Response status:", response.status);
         if (!response.ok) {
           if (response.status === 404) {
             this.error = "Техніка не знайдена";
@@ -134,10 +132,8 @@ export default {
           throw new Error(`HTTP error: ${response.status}`);
         }
         const data = await response.json();
-        console.log("Fetched equipment:", data);
         this.equipment = data;
       } catch (err) {
-        console.error("Fetch error:", err.message);
         this.error = `Помилка завантаження даних: ${err.message}`;
       } finally {
         this.loading = false;
