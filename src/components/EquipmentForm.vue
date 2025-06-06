@@ -234,7 +234,7 @@ export default {
       }
     },
     cancelEdit() {
-      if (this.previousRoute && this.previousRoute.name !== "EditEquipment") {
+      if (this.previousRoute && this.previousRoute.name !== "EditEquipment" && this.previousRoute.name !== "AddEquipment") {
         this.$router.push(this.previousRoute);
       } else {
         this.$router.push("/");

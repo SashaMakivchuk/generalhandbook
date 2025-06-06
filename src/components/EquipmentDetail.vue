@@ -141,7 +141,7 @@ export default {
     },
     goBack() {
       const previousRoute = this.previousRoute || { path: "/" };
-      if (previousRoute.name !== "EditEquipment") {
+      if (previousRoute.name !== "EditEquipment" && previousRoute.name !== "AddEquipment") {
         this.$router.replace(previousRoute);
       } else {
         this.$router.replace("/");
