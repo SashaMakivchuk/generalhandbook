@@ -69,16 +69,16 @@ export default {
   },
   methods: {
     async fetchEquipment() {
-        const response = await fetch(`${API_BASE_URL}/api/equipment`);
-        if (!response.ok)
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        this.equipment = await response.json();
+      const response = await fetch(`${API_BASE_URL}/api/equipment`);
+      if (!response.ok)
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      this.equipment = await response.json();
     },
     async deleteEquipment(id) {
-        await fetch(`${API_BASE_URL}/api/equipment/${id}`, {
-          method: "DELETE",
-        });
-        this.equipment = this.equipment.filter((item) => item._id !== id);
+      await fetch(`${API_BASE_URL}/api/equipment/${id}`, {
+        method: "DELETE",
+      });
+      this.equipment = this.equipment.filter((item) => item._id !== id);
     },
   },
   created() {
