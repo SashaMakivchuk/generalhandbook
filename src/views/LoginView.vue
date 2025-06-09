@@ -5,28 +5,13 @@
       <form @submit.prevent="login" class="space-y-4">
         <div>
           <label class="block text-text-light">Username</label>
-          <input
-            v-model="username"
-            type="text"
-            class="w-full p-2 bg-gray-700 text-text-light rounded"
-            required
-          />
+          <input v-model="username" type="text" class="w-full p-2 bg-gray-700 text-text-light rounded" required>
         </div>
         <div>
           <label class="block text-text-light">Password</label>
-          <input
-            v-model="password"
-            type="password"
-            class="w-full p-2 bg-gray-700 text-text-light rounded"
-            required
-          />
+          <input v-model="password" type="password" class="w-full p-2 bg-gray-700 text-text-light rounded" required>
         </div>
-        <button
-          type="submit"
-          class="w-full bg-action-blue text-white p-2 rounded hover:bg-blue-600"
-        >
-          Login
-        </button>
+        <button type="submit" class="w-full bg-action-blue text-white p-2 rounded hover:bg-blue-600">Login</button>
       </form>
       <p v-if="error" class="text-red-500 mt-2">{{ error }}</p>
     </div>
@@ -34,7 +19,7 @@
 </template>
 
 <script>
-import { useStore } from "vuex";
+import { useStore } from 'vuex';
 
 export default {
   setup() {
@@ -45,24 +30,20 @@ export default {
   },
   data() {
     return {
-      username: "",
-      password: "",
-      error: "",
+      username: '',
+      password: '',
+      error: '',
     };
   },
   methods: {
     async login() {
       try {
-        const response = await this.$axios.post("/api/login", {
-          username: this.username,
-          password: this.password,
-        });
-        const token = response.data.token;
-        this.store.dispatch("login", token);
+        const { data: { token } } = await this.$axios.post('/api/login', { username: this.username, password: this.password });
+        this.store.dispatch('login', token);
         this.$axios.defaults.headers.Authorization = `Bearer ${token}`;
-        this.$router.push("/");
+        this.$router.push('/');
       } catch (err) {
-        this.error = err.response?.data?.message || "Login failed";
+        this.error = err.response?.data?.message || 'Login failed';
       }
     },
   },
