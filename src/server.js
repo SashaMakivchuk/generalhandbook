@@ -13,13 +13,11 @@ app.use(
 );
 app.use(express.json());
 
-// Debug environment variable loading
 console.log(
   "Loaded environment variables:",
   JSON.stringify(process.env, null, 2)
 );
 
-// Extract and validate MONGODB_URI
 const MONGODB_URI = (process.env.MONGODB_URI || "").trim();
 console.log(
   "Raw MONGODB_URI from process.env:",
@@ -86,7 +84,6 @@ const equipmentSchema = new mongoose.Schema({
 
 const Equipment = mongoose.model("Equipment", equipmentSchema);
 
-// Middleware to verify JWT
 const authenticateToken = (req, res, next) => {
   const token = req.headers["authorization"]?.split(" ")[1];
   if (!token) return res.status(401).json({ message: "No token provided" });
@@ -98,7 +95,6 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-// Register endpoint with bcrypt
 app.post("/api/register", async (req, res) => {
   const { username, password } = req.body;
   try {
@@ -109,8 +105,8 @@ app.post("/api/register", async (req, res) => {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     const user = new User({ username, password: hashedPassword });
-    const savedUser = await user.save(); // Capture the saved result
-    console.log("User saved successfully:", savedUser); // Log success
+    const savedUser = await user.save();
+    console.log("User saved successfully:", savedUser);
     res.status(201).json({ message: "User registered" });
   } catch (err) {
     console.error("Error in /api/register:", err.message, err.stack);
@@ -118,11 +114,10 @@ app.post("/api/register", async (req, res) => {
   }
 });
 
-// Login endpoint
 app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
   try {
-    console.log("Login attempt for username:", username); // Debug log
+    console.log("Login attempt for username:", username);
     const user = await User.findOne({ username });
     if (!user) {
       console.log("User not found:", username);
@@ -150,7 +145,6 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-// Health check route
 app.get("/", (req, res) => {
   res.json({
     message: "General's Handbook Backend is running",
@@ -232,13 +226,11 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
-// Handle uncaught exceptions
 process.on("uncaughtException", (err) => {
   console.error("Uncaught Exception:", err.message, err.stack);
   process.exit(1);
 });
 
-// Handle unhandled promise rejections
 process.on("unhandledRejection", (reason, promise) => {
   console.error("Unhandled Rejection at:", promise, "reason:", reason);
   process.exit(1);

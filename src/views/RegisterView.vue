@@ -63,7 +63,7 @@ export default {
           username: this.username,
           password: this.password,
         });
-        this.$router.push("/login"); // Redirect to login after registration
+        this.$router.push("/login");
       } catch (err) {
         this.error = err.response?.data?.message || "Registration failed";
       }

@@ -1,23 +1,27 @@
 <template>
   <div
-    class="container mx-auto px-6 py-8 bg-gradient-to-b from-dark-bg to-[#2f3b3c] text-text-light min-h-screen"
+    class="container mx-auto px-6 py-8 bg-gradient-to-b from-dark-bg to-card-bg text-text-light min-h-screen"
   >
-    <div class="relative bg-cover bg-center h-48 rounded-xl mb-8 shadow-lg">
+    <div
+      class="relative bg-cover bg-center h-48 rounded-xl mb-8 shadow-lg animate-fade-in"
+    >
       <div class="absolute inset-0 bg-dark-bg opacity-70 rounded-xl"></div>
       <h1
-        class="relative text-4xl font-bold text-center pt-20 text-accent-blue shadow-text"
+        class="relative text-4xl font-bold text-center pt-20 text-accent-blue shadow-text animate-pulse-slow"
       >
         Довідник генерала
       </h1>
     </div>
     <div class="flex gap-6 lg:flex-row flex-col">
-      <div class="search-section flex-2 bg-card-bg rounded-xl p-6 shadow-lg">
+      <div
+        class="search-section flex-2 bg-card-bg rounded-xl p-6 shadow-lg animate-slide-up"
+      >
         <input
           v-model="searchQuery"
           placeholder="Пошук за назвою або категорією"
-          class="w-full p-3 mb-6 bg-dark-bg text-text-light border border-border-gray rounded-lg focus:ring-2 focus:ring-accent-blue transition"
+          class="w-full p-3 mb-6 bg-dark-bg text-text-light border border-border-gray rounded-lg focus:ring-2 focus:ring-accent-blue transition animate-fade-in"
         />
-        <div v-if="searchQuery" class="search-results">
+        <div v-if="searchQuery" class="search-results animate-fade-in">
           <h2 class="text-xl font-semibold mb-4 text-text-light">
             Результати пошуку
           </h2>
@@ -25,7 +29,7 @@
             <li
               v-for="item in filteredEquipment"
               :key="item._id"
-              class="py-3 border-b border-border-gray"
+              class="py-3 border-b border-border-gray animate-slide-up"
             >
               <router-link
                 :to="'/equipment/' + item._id"
@@ -38,20 +42,22 @@
           </ul>
         </div>
       </div>
-      <div class="catalog-section flex-1 bg-card-bg rounded-xl p-6 shadow-lg">
+      <div
+        class="catalog-section flex-1 bg-card-bg rounded-xl p-6 shadow-lg animate-slide-up"
+      >
         <h3 class="text-lg font-semibold mb-4 text-text-light">Каталог</h3>
         <ul class="space-y-2">
           <li
             v-for="category in categories"
             :key="category"
-            class="border-b border-border-gray"
+            class="border-b border-border-gray animate-slide-up"
           >
             <router-link
               :to="'/category/' + encodeURIComponent(category)"
               class="block"
             >
               <div
-                class="p-4 bg-dark-bg rounded-lg hover:bg-gradient-to-r from-dark-bg to-[#3a4a4b] transition transform hover:scale-105"
+                class="p-4 bg-dark-bg rounded-lg hover:bg-gradient-to-r from-dark-bg to-card-bg transition transform hover:scale-105"
               >
                 <span class="text-accent-blue flex items-center gap-2">
                   <i class="fas fa-folder fa-sm"></i>
