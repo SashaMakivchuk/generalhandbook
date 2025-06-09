@@ -17,19 +17,19 @@ const routes = [
     path: "/home",
     name: "HomeView",
     component: HomeView,
-    meta: { requiresAuth: true}
+    meta: { requiresAuth: true },
   },
   {
     path: "/category/:category",
     name: "Category",
     component: CategoryView,
-    meta: { requiresAuth: true},
+    meta: { requiresAuth: true },
   },
   {
     path: "/equipment/:id",
     name: "EquipmentDetail",
     component: EquipmentDetail,
-    meta: { requiresAuth: true},
+    meta: { requiresAuth: true },
   },
   {
     path: "/edit/:id",
@@ -41,7 +41,7 @@ const routes = [
     path: "/add",
     name: "AddEquipment",
     component: EquipmentForm,
-    meta: { requiresAuth: true}
+    meta: { requiresAuth: true },
   },
   { path: "/login", component: LoginView },
   { path: "/register", component: RegisterView },
