@@ -34,7 +34,15 @@
 </template>
 
 <script>
+import { useStore } from "vuex";
+
 export default {
+  setup() {
+    const store = useStore();
+    return {
+      store,
+    };
+  },
   data() {
     return {
       username: "",
@@ -50,7 +58,7 @@ export default {
           password: this.password,
         });
         const token = response.data.token;
-        localStorage.setItem("token", token);
+        this.store.dispatch("login", token);
         this.$axios.defaults.headers.Authorization = `Bearer ${token}`;
         this.$router.push("/");
       } catch (err) {
