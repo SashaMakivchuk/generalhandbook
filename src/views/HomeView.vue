@@ -2,11 +2,7 @@
   <div class="bg-dark-bg min-h-screen">
     <!-- Hero Section -->
     <div class="relative">
-      <img
-        src="/images/hero.jpg"
-        alt="Hero Image"
-        class="w-full h-64 object-cover"
-      />
+      <div class="w-full h-64 object-cover" />
       <div class="absolute inset-0 bg-black opacity-50"></div>
       <div
         class="absolute inset-0 flex items-center justify-center text-center text-white"

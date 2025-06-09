@@ -61,7 +61,7 @@ export default {
         });
         this.store.dispatch("login", token);
         this.$axios.defaults.headers.Authorization = `Bearer ${token}`;
-        this.$router.push("/");
+        this.$router.push("/home");
       } catch (err) {
         this.error = err.response?.data?.message || "Login failed";
       }

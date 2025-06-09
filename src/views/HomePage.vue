@@ -31,6 +31,13 @@
           class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
           >Login</router-link
         >
+        <div v-if="isAuthenticated">
+          <router-link
+            to="/home"
+            class="bg-action-blue text-white px-4 py-2 rounded hover:bg-blue-600"
+            >Home</router-link
+          >
+        </div>
       </div>
     </div>
   </div>
