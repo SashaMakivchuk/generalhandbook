@@ -1,177 +1,98 @@
 <template>
-  <div
-    class="container mx-auto px-6 py-8 bg-gradient-to-b from-dark-bg to-[#2f3b3c] text-text-light min-h-screen"
-  >
-    <div v-if="loading" class="text-center text-error-red text-lg mt-5">
-      Завантаження...
-    </div>
-    <div v-else-if="error" class="text-center text-error-red text-lg mt-5">
-      {{ error }}
-    </div>
-    <div v-else class="bg-card-bg rounded-xl p-6 shadow-lg">
-      <h1
-        class="text-3xl font-bold mb-6 text-accent-blue text-center shadow-text"
+  <div v-if="isAuthenticated" class="bg-dark-bg min-h-screen p-4">
+    <h2 class="text-2xl text-text-light mb-4">
+      {{ editing ? "Edit Equipment" : "Add Equipment" }}
+    </h2>
+    <form @submit.prevent="saveEquipment" class="space-y-4">
+      <div>
+        <label class="block text-text-light">Category</label>
+        <input
+          v-model="equipment.category"
+          class="w-full p-2 bg-gray-700 text-text-light rounded"
+          required
+        />
+      </div>
+      <div>
+        <label class="block text-text-light">Title</label>
+        <input
+          v-model="equipment.title"
+          class="w-full p-2 bg-gray-700 text-text-light rounded"
+          required
+        />
+      </div>
+      <div>
+        <label class="block text-text-light">How Much</label>
+        <input
+          v-model.number="equipment.how_much"
+          type="number"
+          class="w-full p-2 bg-gray-700 text-text-light rounded"
+          required
+        />
+      </div>
+      <div>
+        <label class="block text-text-light">Creation Year</label>
+        <input
+          v-model.number="equipment.creation_year"
+          type="number"
+          class="w-full p-2 bg-gray-700 text-text-light rounded"
+          required
+        />
+      </div>
+      <div>
+        <label class="block text-text-light">Price USD</label>
+        <input
+          v-model.number="equipment.price_usd"
+          type="number"
+          class="w-full p-2 bg-gray-700 text-text-light rounded"
+          required
+        />
+      </div>
+      <div>
+        <label class="block text-text-light">Period of Operation</label>
+        <input
+          v-model="equipment.period_of_operation"
+          class="w-full p-2 bg-gray-700 text-text-light rounded"
+          required
+        />
+      </div>
+      <div>
+        <label class="block text-text-light">Origin</label>
+        <input
+          v-model="equipment.origin"
+          class="w-full p-2 bg-gray-700 text-text-light rounded"
+          required
+        />
+      </div>
+      <div>
+        <label class="block text-text-light">Description</label>
+        <textarea
+          v-model="equipment.description"
+          class="w-full p-2 bg-gray-700 text-text-light rounded"
+          required
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        class="bg-action-blue text-white p-2 rounded hover:bg-blue-600"
       >
-        {{ isEdit ? "Редагувати техніку" : "Додати техніку" }}
-      </h1>
-      <form @submit.prevent="saveEquipment" class="grid gap-4">
-        <div class="flex flex-wrap gap-2.5 items-center">
-          <label
-            for="category"
-            class="font-bold text-text-light min-w-[150px] flex items-center gap-2"
-          >
-            <i class="fas fa-folder fa-sm"></i> Категорія:
-          </label>
-          <input
-            id="category"
-            v-model="equipment.category"
-            type="text"
-            required
-            placeholder="Введіть категорію"
-            class="flex-1 p-3 bg-dark-bg text-text-light border border-border-gray rounded-lg focus:ring-2 focus:ring-accent-blue"
-          />
-        </div>
-        <div class="flex flex-wrap gap-2.5 items-center">
-          <label
-            for="title"
-            class="font-bold text-text-light min-w-[150px] flex items-center gap-2"
-          >
-            <i class="fas fa-tag fa-sm"></i> Назва:
-          </label>
-          <input
-            id="title"
-            v-model="equipment.title"
-            type="text"
-            required
-            placeholder="Введіть назву"
-            class="flex-1 p-3 bg-dark-bg text-text-light border border-border-gray rounded-lg focus:ring-2 focus:ring-accent-blue"
-          />
-        </div>
-        <div class="flex flex-wrap gap-2.5 items-center">
-          <label
-            for="how_much"
-            class="font-bold text-text-light min-w-[150px] flex items-center gap-2"
-          >
-            <i class="fas fa-cubes fa-sm"></i> Кількість:
-          </label>
-          <input
-            id="how_much"
-            v-model.number="equipment.how_much"
-            type="number"
-            min="0"
-            required
-            placeholder="0"
-            class="flex-1 p-3 bg-dark-bg text-text-light border border-border-gray rounded-lg focus:ring-2 focus:ring-accent-blue"
-          />
-        </div>
-        <div class="flex flex-wrap gap-2.5 items-center">
-          <label
-            for="creation_year"
-            class="font-bold text-text-light min-w-[150px] flex items-center gap-2"
-          >
-            <i class="fas fa-calendar fa-sm"></i> Рік створення:
-          </label>
-          <input
-            id="creation_year"
-            v-model.number="equipment.creation_year"
-            type="number"
-            min="1900"
-            max="2100"
-            required
-            placeholder="0"
-            class="flex-1 p-3 bg-dark-bg text-text-light border border-border-gray rounded-lg focus:ring-2 focus:ring-accent-blue"
-          />
-        </div>
-        <div class="flex flex-wrap gap-2.5 items-center">
-          <label
-            for="price_usd"
-            class="font-bold text-text-light min-w-[150px] flex items-center gap-2"
-          >
-            <i class="fas fa-dollar-sign fa-sm"></i> Ціна (USD):
-          </label>
-          <input
-            id="price_usd"
-            v-model.number="equipment.price_usd"
-            type="number"
-            min="0"
-            required
-            placeholder="0"
-            class="flex-1 p-3 bg-dark-bg text-text-light border border-border-gray rounded-lg focus:ring-2 focus:ring-accent-blue"
-          />
-        </div>
-        <div class="flex flex-wrap gap-2.5 items-center">
-          <label
-            for="period_of_operation"
-            class="font-bold text-text-light min-w-[150px] flex items-center gap-2"
-          >
-            <i class="fas fa-clock fa-sm"></i> Період експлуатації:
-          </label>
-          <input
-            id="period_of_operation"
-            v-model="equipment.period_of_operation"
-            type="text"
-            required
-            placeholder="Введіть період"
-            class="flex-1 p-3 bg-dark-bg text-text-light border border-border-gray rounded-lg focus:ring-2 focus:ring-accent-blue"
-          />
-        </div>
-        <div class="flex flex-wrap gap-2.5 items-center">
-          <label
-            for="origin"
-            class="font-bold text-text-light min-w-[150px] flex items-center gap-2"
-          >
-            <i class="fas fa-globe fa-sm"></i> Походження:
-          </label>
-          <input
-            id="origin"
-            v-model="equipment.origin"
-            type="text"
-            required
-            placeholder="Введіть країну"
-            class="flex-1 p-3 bg-dark-bg text-text-light border border-border-gray rounded-lg focus:ring-2 focus:ring-accent-blue"
-          />
-        </div>
-        <div class="flex flex-col gap-2.5">
-          <label
-            for="description"
-            class="font-bold text-text-light flex items-center gap-2"
-          >
-            <i class="fas fa-file-alt fa-sm"></i> Опис:
-          </label>
-          <textarea
-            id="description"
-            v-model="equipment.description"
-            required
-            placeholder="Введіть опис"
-            class="w-full p-3 bg-dark-bg text-text-light border border-border-gray rounded-lg min-h-[100px] focus:ring-2 focus:ring-accent-blue"
-          ></textarea>
-        </div>
-        <div class="flex gap-4 justify-center">
-          <button
-            type="submit"
-            class="bg-action-blue text-text-light p-3 rounded-full hover:bg-action-blue-hover transition shadow disabled:bg-neutral-gray disabled:cursor-not-allowed"
-            :disabled="saving"
-            title="Зберегти"
-          >
-            <i class="fas fa-save fa-lg"></i>
-          </button>
-          <button
-            type="button"
-            @click="cancelEdit"
-            class="bg-neutral-gray text-text-light p-3 rounded-full hover:bg-neutral-gray-hover transition shadow"
-            title="Скасувати"
-          >
-            <i class="fas fa-times fa-lg"></i>
-          </button>
-        </div>
-      </form>
-    </div>
+        {{ editing ? "Update" : "Create" }}
+      </button>
+      <button
+        type="button"
+        @click="goBack"
+        class="ml-2 bg-gray-600 text-white p-2 rounded hover:bg-gray-700"
+      >
+        Back
+      </button>
+    </form>
+    <p v-if="error" class="text-red-500 mt-2">{{ error }}</p>
+  </div>
+  <div v-else class="bg-dark-bg min-h-screen flex items-center justify-center">
+    <p class="text-text-light">Please log in to access this page.</p>
   </div>
 </template>
 
 <script>
-import { API_BASE_URL } from "../config";
-
 export default {
   data() {
     return {
@@ -185,70 +106,41 @@ export default {
         origin: "",
         description: "",
       },
-      loading: false,
-      saving: false,
+      editing: false,
       error: "",
-      isEdit: false,
-      previousRoute: null,
     };
   },
-  methods: {
-    async fetchEquipment() {
-      if (!this.$route.params.id) return;
-      this.loading = true;
-      try {
-        console.log(`Fetching equipment with ID: ${this.$route.params.id}`);
-        const response = await fetch(
-          `${API_BASE_URL}/api/equipment/${this.$route.params.id}`
-        );
-        if (!response.ok)
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        this.equipment = await response.json();
-        this.isEdit = true;
-      } catch (err) {
-        this.error = `Помилка завантаження даних: ${err.message}`;
-      } finally {
-        this.loading = false;
-      }
-    },
-    async saveEquipment() {
-      this.saving = true;
-      try {
-        const method = this.isEdit ? "PUT" : "POST";
-        const url = this.isEdit
-          ? `${API_BASE_URL}/api/equipment/${this.$route.params.id}`
-          : `${API_BASE_URL}/api/equipment`;
-        const response = await fetch(url, {
-          method,
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(this.equipment),
-        });
-        if (!response.ok)
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        const savedEquipment = await response.json();
-        this.$router.replace(`/equipment/${savedEquipment._id}`);
-      } catch (err) {
-        this.error = `Помилка збереження: ${err.message}`;
-      } finally {
-        this.saving = false;
-      }
-    },
-    cancelEdit() {
-      if (this.previousRoute && this.previousRoute.name !== "EditEquipment" && this.previousRoute.name !== "AddEquipment") {
-        this.$router.push(this.previousRoute);
-      } else {
-        this.$router.push("/");
-      }
+  computed: {
+    isAuthenticated() {
+      return !!localStorage.getItem("token");
     },
   },
-  beforeRouteEnter(to, from, next) {
-    next((vm) => {
-      vm.previousRoute = from;
-    });
+  methods: {
+    async saveEquipment() {
+      try {
+        this.$router.push("/");
+      } catch (err) {
+        this.error = err.response?.data?.message || "Save failed";
+      }
+    },
+    goBack() {
+      this.$router.go(-1);
+    },
   },
   created() {
     if (this.$route.params.id) {
+      this.editing = true;
       this.fetchEquipment();
+    }
+  },
+  async fetchEquipment() {
+    try {
+      const response = await this.$axios.get(
+        `/api/equipment/${this.$route.params.id}`
+      );
+      this.equipment = response.data;
+    } catch (err) {
+      this.error = err.response?.data?.message || "Fetch failed";
     }
   },
 };
