@@ -90,10 +90,9 @@ export default {
     async fetchEquipment() {
       try {
         console.log(`Fetching equipment from ${API_BASE_URL}/api/equipment`);
-        const response = await fetch(`${API_BASE_URL}/api/equipment`);
-        if (!response.ok)
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        this.equipment = await response.json();
+        const response = await this.$axios.get(`${API_BASE_URL}/api/equipment`);
+        if (!response.data) throw new Error("No data received");
+        this.equipment = response.data;
         this.categories = [
           ...new Set(this.equipment.map((item) => item.category)),
         ].sort();
