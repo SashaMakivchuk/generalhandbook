@@ -1,32 +1,33 @@
 <template>
   <div class="min-h-screen">
+    <!-- Hero Section -->
     <div
-      class="relative bg-gradient-to-br from-[#1c2526] via-[#2f3b3c] to-[#3a4a4b] text-center py-24 px-6 shadow-2xl animate-fade-in"
+      class="relative bg-gradient-to-br from-dark-bg via-card-bg to-card-bg text-center py-28 px-6 shadow-xl"
     >
       <h1
-        class="text-5xl md:text-6xl font-extrabold text-white tracking-wide mb-4 animate-pulse-slow"
-        style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7)"
+        class="text-5xl md:text-7xl font-extrabold text-text-light tracking-wide mb-6"
+        style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8)"
       >
         Довідник Генерала
       </h1>
       <p
-        class="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto animate-slide-up"
+        class="text-2xl md:text-3xl text-text-light mb-10 max-w-3xl mx-auto leading-relaxed"
       >
         Досліджуйте каталог військової техніки. Зареєструйтесь або увійдіть, щоб
         керувати своїми записами.
       </p>
-      <div class="space-x-4">
+      <div class="space-x-6">
         <router-link
           to="/register"
-          class="bg-accent-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-transform transform hover:scale-105 shadow-md"
+          class="bg-action-blue text-text-light px-8 py-4 rounded-xl font-semibold hover:bg-action-blue-hover transition-transform transform hover:scale-105 shadow-lg"
         >
-          Register
+          Зареєструватися
         </router-link>
         <router-link
           to="/login"
-          class="bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-600 transition-transform transform hover:scale-105 shadow-md"
+          class="bg-neutral-gray text-text-light px-8 py-4 rounded-xl font-semibold hover:bg-neutral-gray-hover transition-transform transform hover:scale-105 shadow-lg"
         >
-          Login
+          Увійти
         </router-link>
       </div>
     </div>
@@ -35,50 +36,6 @@
 
 <script>
 export default {
-  name: "HomeView",
+  name: "HomePage",
 };
 </script>
-
-<style scoped>
-.animate-fade-in {
-  animation: fadeIn 1.5s ease-in-out;
-}
-
-.animate-pulse-slow {
-  animation: pulse 3s infinite ease-in-out;
-}
-
-.animate-slide-up {
-  animation: slideUp 1s ease-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.02);
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-</style>
