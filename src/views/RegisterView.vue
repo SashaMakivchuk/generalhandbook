@@ -59,11 +59,11 @@ export default {
   methods: {
     async register() {
       try {
-        const response = await this.$axios.post("/api/register", {
+        await this.$axios.post("/api/register", {
           username: this.username,
           password: this.password,
         });
-        this.$router.push("/login");
+        this.$router.push("/login"); // Redirect to login after registration
       } catch (err) {
         this.error = err.response?.data?.message || "Registration failed";
       }
