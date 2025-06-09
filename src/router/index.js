@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import HomePage from "../views/HomePage.vue";
 import HomeView from "../views/HomeView.vue";
 import CategoryView from "../views/CategoryView.vue";
 import EquipmentDetail from "../components/EquipmentDetail.vue";
@@ -9,7 +10,12 @@ import RegisterView from "../views/RegisterView.vue";
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "HomePage",
+    component: HomePage,
+  },
+  {
+    path: "/home",
+    name: "HomeView",
     component: HomeView,
   },
   {
@@ -26,6 +32,7 @@ const routes = [
     path: "/edit/:id",
     name: "EditEquipment",
     component: EquipmentForm,
+    meta: { requiresAuth: true },
   },
   {
     path: "/add",
